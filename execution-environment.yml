@@ -1,0 +1,25 @@
+---
+version: 1
+
+build_arg_defaults:
+  EE_BASE_IMAGE: "quay.io/ansible/ansible-runner:stable-2.10-devel"
+
+ansible_config: "ansible.cfg"
+
+dependencies:
+  galaxy: requirements.yml
+  python: requirements.txt
+  system: bindep.txt
+
+additional_build_steps:
+  prepend: |
+    RUN whoami
+    RUN cat /etc/os-release
+    RUN pip3 install --upgrade pip setuptools
+
+  append:
+    - RUN alternatives --set python /usr/bin/python3
+    - RUN pip3 uninstall --yes ansible-runner && pip3 install ansible-runner==2.1.1
+    - RUN git lfs install
+    - ADD run.sh /run.sh
+    - CMD /run.sh
