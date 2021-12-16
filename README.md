@@ -7,14 +7,12 @@ Source code to create a custom AWX execution environment with customized Python 
 It is recommended to setup  a virtual python environment to ensure it does not interfere with the local Python environment.
 
 To setup a virtual environment `ansible-builder` run the following commands:
-
 ```bash
 mkdir -p  ~/venv/ansible-builder
 python3 -m venv ~/venv/ansible-builder
 source ~/venv/ansible-builder/bin/activate
 ```
-
-Install the required modules to build the execution environment
+### Install the required modules to build the execution environment
 
 At first startup install some required modules in the venv:
 
@@ -61,7 +59,6 @@ The following is a sample configuration of the execution environment in AWX:
 ![cog-teik-awx-custom-ee](images/sample_awx_ee.png)
 
 ## Useful links
-
 [https://github.com/ansible/awx](https://github.com/ansible/awx)
 
 [https://github.com/ansible/awx-operator](https://github.com/ansible/awx-operator)
