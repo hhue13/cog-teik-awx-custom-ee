@@ -1,6 +1,8 @@
 collections:
+  - name: ansible.posix
+  - name: awx.awx
+  - name: community.general
   - name: community.okd
   - name: kubernetes.core
-  - name: ansible.posix
+    version: 2.2.2
   - name: redhat_cop.tower_configuration
-  - name: community.general

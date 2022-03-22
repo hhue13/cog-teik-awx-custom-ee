@@ -1,3 +1,12 @@
 awxkit>=19.4.0
+cryptography >= 3.0
+ipaddress
+jsonpatch
+kubernetes>= 12.0.0
+linode_api4 >= 2.0.0
+prettytable
 pypsrp
+PyYAML >= 3.11
+requests >= 1.1
 urllib3
+websocket-client >= 1.0.0
