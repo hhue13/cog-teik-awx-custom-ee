@@ -33,7 +33,7 @@ COPY --from=galaxy /usr/share/ansible /usr/share/ansible
 COPY --from=builder /output/ /output/
 RUN /output/install-from-bindep && rm -rf /output/wheels
 RUN alternatives --set python /usr/bin/python3
-RUN pip3 uninstall --yes ansible-runner && pip3 install ansible-runner==2.1.1
+RUN pip3 uninstall --yes ansible-runner && pip3 install ansible-runner==2.1.3
 RUN git lfs install
 ADD run.sh /run.sh
 CMD /run.sh
