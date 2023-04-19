@@ -27,6 +27,7 @@ FROM $EE_BASE_IMAGE
 USER root
 RUN whoami
 RUN cat /etc/os-release
+RUN alternatives --set python /usr/bin/python3
 RUN pip3 install --upgrade pip setuptools
 
 COPY --from=galaxy /usr/share/ansible /usr/share/ansible
@@ -35,6 +36,9 @@ COPY --from=builder /output/ /output/
 RUN /output/install-from-bindep && rm -rf /output/wheels
 RUN alternatives --set python /usr/bin/python3
 RUN pip3 uninstall --yes ansible-runner && pip3 install ansible-runner==2.3.2
+RUN rm -rf /usr/local/lib/python3.8/site-packages/OpenSSL
+RUN pip3 install pyopenssl
+RUN pip3 install pyopenssl --upgrade
 RUN git lfs install
 ADD run.sh /run.sh
 CMD /run.sh

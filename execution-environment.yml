@@ -15,11 +15,20 @@ additional_build_steps:
   prepend: |
     RUN whoami
     RUN cat /etc/os-release
+    RUN alternatives --set python /usr/bin/python3
     RUN pip3 install --upgrade pip setuptools
 
   append:
     - RUN alternatives --set python /usr/bin/python3
     - RUN pip3 uninstall --yes ansible-runner && pip3 install ansible-runner==2.3.2
+#########################################################################################################################
+## The next three lines are because of required pyopenssl patch:
+## https://stackoverflow.com/questions/73830524/attributeerror-module-lib-has-no-attribute-x509-v-flag-cb-issuer-check
+##
+    - RUN rm -rf /usr/local/lib/python3.8/site-packages/OpenSSL
+    - RUN pip3 install pyopenssl
+    - RUN pip3 install pyopenssl --upgrade
+#########################################################################################################################
     - RUN git lfs install
     - ADD run.sh /run.sh
     - CMD /run.sh
