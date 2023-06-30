@@ -19,8 +19,8 @@ source ~/venv/ansible-builder/bin/activate
 At first startup install some required modules in the venv:
 
 ```bash
-pip3 install ansible-builder==1.2.0
-pip3 uninstall --yes ansible-runner && pip3 install ansible-runner==2.3.2
+pip3 install ansible-builder==3.0.0
+pip3 uninstall --yes ansible-runner && pip3 install ansible-runner==2.3.3
 ```
 
 ## Clone the git repository whose README.md you are reading
@@ -38,13 +38,13 @@ The execution environment is configured via the following files:
 Build the image for the execution environment (**make sure that the proper python env has been activated**) by running:
 
 ```bash
-ansible-builder build --tag <registry-host>/<registry-library>/<image>:<tag> --context ./context --container-runtime podman
+ansible-builder build --tag <registry-host>/<registry-library>/<image>:<tag> --context ./context --container-runtime podman --file execution-environment.yml --prune-images --verbosity 3 --build-arg PKGMGR=/usr/bin/microdnf
 ```
 
 for example:
 
 ```bash
-ansible-builder build --tag localhost/hhue/cog-awx-custom-ee:0.0.1 --context ./context --container-runtime podman
+ansible-builder build --tag localhost/hhue/cog-awx-custom-ee:0.0.1 --context ./context --container-runtime podman  --file execution-environment.yml --prune-images --verbosity 3 --build-arg PKGMGR=/usr/bin/microdnf
 ```
 
 ## Retag and push the new image
