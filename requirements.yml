@@ -6,7 +6,7 @@ collections:
   - name: community.general
   - name: community.okd
   - name: kubernetes.core
-    version: 2.4.0
+    version: 3.0.1
   - name: redhat_cop.tower_configuration
 roles:
   - src: https://github.com/hhue13/k8slogin.git

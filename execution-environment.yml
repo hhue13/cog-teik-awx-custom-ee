@@ -6,7 +6,7 @@ version: 3
 
 dependencies:
   ansible_core:
-    package_pip: ansible-core==2.15.1
+    package_pip: ansible-core==2.15.11
   ansible_runner:
     package_pip: ansible-runner
   python_interpreter:
@@ -18,7 +18,7 @@ dependencies:
 
 images:
   base_image:
-    name: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8:latest
+    name: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel9:latest
 
 additional_build_files:
     - src: ansible.cfg
@@ -39,7 +39,7 @@ additional_build_steps:
 
   append_final:
     - RUN echo This is a post-install command!
-    - RUN alternatives --set python /usr/bin/python3.9
-    - RUN alternatives --set python3 /usr/bin/python3.9
+    - RUN ln -sf /usr/bin/python3.9 /usr/bin/python
+    - RUN ln -sf /usr/bin/python3.9 /usr/bin/python3
     - RUN pip3 install --upgrade pip setuptools
     - RUN pip3 install pyopenssl --upgrade
