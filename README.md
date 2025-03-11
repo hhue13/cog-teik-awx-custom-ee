@@ -19,8 +19,8 @@ source ~/venv/ansible-builder/bin/activate
 At first startup install some required modules in the venv:
 
 ```bash
-pip3 install ansible-builder==3.0.0
-pip3 uninstall --yes ansible-runner && pip3 install ansible-runner==2.3.3
+pip3 install ansible-builder==3.1.0
+pip3 uninstall --yes ansible-runner && pip3 install ansible-runner==2.4.0
 ```
 
 ## Clone the git repository whose README.md you are reading
