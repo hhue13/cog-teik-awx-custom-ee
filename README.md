@@ -1,6 +1,11 @@
-# coe-teik-awx-custom-ee - an AWX execution environment
+# cog-teik-awx-custom-ee - an AWX execution environment
 
 Source code to create a custom AWX execution environment with customized Python modules and Ansible collections.
+
+
+```
+> **_NOTE:_**  As the base image for the EE build is a RHEL9 image the project should be build on a RHEL9 system to ensure the availability of all rpm packages (some require a subscription).
+```
 
 ## Prepare python3 venv to setup ansible-builder
 
@@ -19,6 +24,7 @@ source ~/venv/ansible-builder/bin/activate
 At first startup install some required modules in the venv:
 
 ```bash
+~/venv/ansible-builder/bin/python3 -m pip install --upgrade pip
 pip3 install ansible-builder==3.1.0
 pip3 uninstall --yes ansible-runner && pip3 install ansible-runner==2.4.0
 ```
@@ -34,6 +40,14 @@ The execution environment is configured via the following files:
 - [ansible.cfg](https://github.com/hhue13/cog-teik-awx-custom-ee/blob/master/ansible.cfg) - This file is *optional* and will be the default **ansible.cfg** for the execution environment
 
 ## Build the Docker image with the execution environment
+
+Make sure that you are logged in to the registry `registry.redhat.io` before proceeding by running
+
+```bash
+podman login registry.redhat.io
+```
+
+**Note**: In this example we are using podman to build. In case you build using docker please run `docker login`
 
 Build the image for the execution environment (**make sure that the proper python env has been activated**) by running:
 
